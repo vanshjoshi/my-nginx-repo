@@ -24,6 +24,7 @@ phases:
       - ls -la target/
 
 artifacts:
+  name: java-app-build.zip
   files:
     - target/*.jar
     - appspec.yml
