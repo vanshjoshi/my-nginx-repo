@@ -4,11 +4,28 @@ phases:
   install:
     runtime-versions:
       java: corretto17
+    commands:
+      - echo Installing dependencies...
+      - mvn -version
+
+  pre_build:
+    commands:
+      - echo Cleaning project...
+      - mvn clean
+
   build:
     commands:
-      - mvn clean package
+      - echo Building application...
+      - mvn package -DskipTests
+
+  post_build:
+    commands:
+      - echo Build completed successfully
+      - ls -la target/
 
 artifacts:
   files:
     - target/*.jar
-  discard-paths: yes
+    - appspec.yml
+    - scripts/**/*
+  discard-paths: no
